@@ -1,4 +1,3 @@
-// src/store/store.ts
 import { configureStore } from '@reduxjs/toolkit';
 import counterReducer from './counterSlice';
 import { createReduxEnhancer } from '@sentry/react';
