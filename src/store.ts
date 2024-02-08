@@ -13,9 +13,7 @@ export const store = configureStore({
     // ここに各Reducerを追加します
     counter: counterReducer,
   },
-  enhancers: (getDefaultEnhancers) => {
-    return getDefaultEnhancers().concat(sentryReduxEnhancer);
-  },
+  enhancers: (getDefaultEnhancers) => getDefaultEnhancers().concat(sentryReduxEnhancer),
 });
 
 // RootState型の定義
