@@ -19,6 +19,7 @@ const Counter: React.FC = () => {
       <div>
         <button onClick={() => dispatch(incrementedByAmount(5))}>+5</button>
       </div>
+      <button onClick={() => methodDoesNotExist()}>Break the world</button>;
     </div>
   );
 };
