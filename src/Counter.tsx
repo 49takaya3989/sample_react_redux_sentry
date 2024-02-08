@@ -19,6 +19,7 @@ const Counter: React.FC = () => {
       <div>
         <button onClick={() => dispatch(incrementedByAmount(5))}>+5</button>
       </div>
+      {/* ↓このボタンは、sentryにエラーを送信するために、あえてエラーのまま残してる */}
       <button onClick={() => methodDoesNotExist()}>Break the world</button>;
     </div>
   );
