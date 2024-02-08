@@ -14,17 +14,20 @@ if (sentryDns) {
     integrations: [
       Sentry.browserTracingIntegration(),
       Sentry.replayIntegration({
-        maskAllText: false,
-        blockAllMedia: false,
+        maskAllText: false, // ユーザーのプライバシーを保護するためにテキストをマスクするかどうか
+        blockAllMedia: false, // パフォーマンスやプライバシーの理由からメディアコンテンツをブロックするかどうか
       }),
     ],
-    // Performance Monitoring
-    tracesSampleRate: 1.0, //  Capture 100% of the transactions
-    // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
-    tracePropagationTargets: ["localhost", /^https:\/\/yourserver\.io\/api/],
-    // Session Replay
-    replaysSessionSampleRate: 0.1, // This sets the sample rate at 10%. You may want to change it to 100% while in development and then sample at a lower rate in production.
-    replaysOnErrorSampleRate: 1.0, // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.
+
+    // パフォーマンスモニタリング
+    tracesSampleRate: 1.0, // アプリケーションで発生するトランザクションのうち、どれだけの割合をトレースする割合
+
+    // 'tracePropagationTargets'で、分散トレーシングを有効にするURL
+    tracePropagationTargets: ["localhost", /^https:\/\/yourserver\.io\/api/], // 分散トレーシングを適用するURLパターン
+
+    // セッションリプレイ
+    replaysSessionSampleRate: 0.1, // セッションリプレイを行うセッションの割合
+    replaysOnErrorSampleRate: 1.0, // エラーが発生した場合のセッションリプレイのサンプルレートを指定
   });
 }
 
