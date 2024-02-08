@@ -1,10 +1,14 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { Action, AnyAction, configureStore } from '@reduxjs/toolkit';
 import counterReducer from './counterSlice';
 import { createReduxEnhancer } from '@sentry/react';
 
+
+type StateType = ReturnType<typeof counterReducer>;
+
+// sentryへ送信する action と state を定義
 const sentryReduxEnhancer = createReduxEnhancer({
-  actionTransformer: (action) => action,
-  stateTransformer: (state) => state,
+  actionTransformer: (action: Action | AnyAction) => action,
+  stateTransformer: (state: StateType) => state,
 });
 
 export const store = configureStore({
