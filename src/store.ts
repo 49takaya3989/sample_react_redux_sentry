@@ -4,21 +4,8 @@ import counterReducer from './counterSlice';
 import { createReduxEnhancer } from '@sentry/react';
 
 const sentryReduxEnhancer = createReduxEnhancer({
-  actionTransformer: (action) => {
-    if (action.type === "GOVERNMENT_SECRETS") {
-      // Return null to not log the action to Sentry
-      return null;
-    }
-    if (action.type === "SET_PASSWORD") {
-      // Return a transformed action to remove sensitive information
-      return {
-        ...action,
-        password: null,
-      };
-    }
-
-    return action;
-  },
+  actionTransformer: (action) => action,
+  stateTransformer: (state) => state,
 });
 
 export const store = configureStore({
