@@ -7,8 +7,47 @@ type StateType = ReturnType<typeof counterReducer>;
 
 // sentryへ送信する action と state を定義
 const sentryReduxEnhancer = createReduxEnhancer({
-  actionTransformer: (action: Action | AnyAction) => action,
-  stateTransformer: (state: StateType) => state,
+  actionTransformer: (action: Action | AnyAction) => {
+    /* ▼▼▼信を省きたいものがあればここで定義▼▼▼ */
+    // if (action.type === "GOVERNMENT_SECRETS") {
+    //   // Return null to not log the action to Sentry
+    //   return null;
+    // }
+    // if (action.type === "SET_PASSWORD") {
+    //   // Return a transformed action to remove sensitive information
+    //   return {
+    //     ...action,
+    //     password: null,
+    //   };
+    // }
+    /* ▲▲▲送信を省きたいものがあればここで定義▲▲▲ */
+
+    return action;
+  },
+  stateTransformer: (state: StateType) => {
+    /* ▼▼▼信を省きたいものがあればここで定義▼▼▼ */
+    // if (state.topSecret.doNotSend) {
+    //   // Return null to not send this version of the state.
+    //   return null;
+    // }
+
+    // // Transform the state to remove sensitive information
+    // const transformedState = {
+    //   ...state,
+    //   topSecret: {
+    //     ...state.topSecret,
+    //     // Replace sensitive information with something else
+    //     nuclearLaunchCodes: "I love pizza",
+    //     // or just remove it entirely
+    //     hiddenTreasureLocation: null,
+    //   },
+    //   // You should also remove large data that is irrelevant to debugging to not clutter your Sentry issues
+    //   giganticState: null,
+    // };
+    /* ▲▲▲送信を省きたいものがあればここで定義▲▲▲ */
+
+    return state;
+  },
 });
 
 export const store = configureStore({
