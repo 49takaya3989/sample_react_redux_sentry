@@ -8,7 +8,7 @@ type StateType = ReturnType<typeof counterReducer>;
 // sentryへ送信する action と state を定義
 const sentryReduxEnhancer = createReduxEnhancer({
   actionTransformer: (action: Action | AnyAction) => {
-    /* ▼▼▼信を省きたいものがあればここで定義▼▼▼ */
+    /* ▼▼▼送信を省きたいものがあればここで定義▼▼▼ */
     // if (action.type === "GOVERNMENT_SECRETS") {
     //   // Return null to not log the action to Sentry
     //   return null;
@@ -25,7 +25,7 @@ const sentryReduxEnhancer = createReduxEnhancer({
     return action;
   },
   stateTransformer: (state: StateType) => {
-    /* ▼▼▼信を省きたいものがあればここで定義▼▼▼ */
+    /* ▼▼▼送信を省きたいものがあればここで定義▼▼▼ */
     // if (state.topSecret.doNotSend) {
     //   // Return null to not send this version of the state.
     //   return null;
